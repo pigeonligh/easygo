@@ -20,5 +20,10 @@ func main() {
 		errs = errors.Merge(errs, err)
 	}
 
+	l := log.With(map[string]string{
+		"fruit": "apple",
+	})
+
+	l.Info(errs)
 	log.Info(errs)
 }
