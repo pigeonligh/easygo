@@ -9,7 +9,7 @@ type Errors struct {
 	errs []error
 }
 
-func New(v ...string) *Errors {
+func New(v ...string) error {
 	errs := []error{}
 	for _, s := range v {
 		errs = append(errs, errors.New(s))
@@ -19,7 +19,7 @@ func New(v ...string) *Errors {
 	}
 }
 
-func Wrap(v ...error) *Errors {
+func Wrap(v ...error) error {
 	errs := []error{}
 	errs = append(errs, v...)
 	return &Errors{
@@ -27,7 +27,13 @@ func Wrap(v ...error) *Errors {
 	}
 }
 
-func Merge(a error, b error) *Errors {
+func Merge(a error, b error) error {
+	if a == nil {
+		return b
+	}
+	if b == nil {
+		return a
+	}
 	errsa, oka := a.(*Errors)
 	errsb, okb := b.(*Errors)
 
@@ -48,12 +54,16 @@ func Merge(a error, b error) *Errors {
 	}
 }
 
-func Append(e *Errors, v ...error) *Errors {
+func Append(e error, v ...error) error {
 	if e == nil {
 		return Wrap(v...)
 	}
+	ex, ok := e.(*Errors)
+	if !ok {
+		ex = Wrap(e).(*Errors)
+	}
 	errs := []error{}
-	errs = append(errs, e.errs...)
+	errs = append(errs, ex.errs...)
 	errs = append(errs, v...)
 	return &Errors{
 		errs: errs,
