@@ -14,3 +14,9 @@ func main() {
     log.Info("Hello world!")
 }
 ```
+
+Output:
+
+```
+{"action":"Info","message":"Hello world!","source":"/path/to/file.go:9"},
+```

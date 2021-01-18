@@ -6,15 +6,22 @@
 package main
 
 import (
-    "fmt"
-    
-    "github.com/pigeonligh/easygo/errors"
+	"fmt"
+
+	"github.com/pigeonligh/easygo/errors"
 )
 
 func main() {
-    a := errors.New("hello")
-    b := errors.New("world")
-    err = errors.Append(a, b)
-    fmt.Println(err)
+	var err error
+	a := errors.New("hello")
+	b := errors.New("world")
+	err = errors.Merge(a, b)
+	fmt.Println(err)
 }
+```
+
+Output:
+
+```
+[hello, world]
 ```
