@@ -6,5 +6,5 @@ Easy Go is a tool-kit for golang.
 
 |Tool|Description|
 |----|-----------|
-|[elog](./doc/log.md)     | a simple logger |
+|[elog](./doc/elog.md)     | a simple logger |
 |[errors](./doc/errors.md)| a type of polymerized error |
