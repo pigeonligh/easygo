@@ -3,6 +3,7 @@
 package main
 
 import (
+	"github.com/pigeonligh/easygo/collections/counter"
 	"github.com/pigeonligh/easygo/collections/meter"
 	log "github.com/pigeonligh/easygo/elog"
 	"github.com/pigeonligh/easygo/errors"
@@ -45,10 +46,26 @@ func testMeter() {
 	log.Info(meter.Sum(1, 2, 3, 4, 5))
 }
 
+func testCounter() {
+	c := counter.New()
+	c.Pushes("apple", 5)
+	c.Pushes("banana", 3)
+	d := counter.New()
+	d.Pushes("apple", 2)
+	d.Pushes("banana", 5)
+
+	log.Info(c.Add(d))
+	log.Info(c.Sub(d))
+	log.Info(c.Max(d))
+	log.Info(c.Min(d))
+}
+
 func main() {
 	logInit()
 
 	testLog()
 	testErrors()
+
 	testMeter()
+	testCounter()
 }
