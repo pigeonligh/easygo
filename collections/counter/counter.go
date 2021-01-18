@@ -75,3 +75,14 @@ func (c Counter) Min(d Counter) Counter {
 	}
 	return r
 }
+
+func (c Counter) Update(d Counter) Counter {
+	r := New()
+	for k, v := range c {
+		r[k] = v
+	}
+	for k, v := range d {
+		r[k] = v
+	}
+	return r
+}
