@@ -1,5 +1,9 @@
 # Change Log
 
+## v0.2.0 (2021/1/20)
+
+- Add collections/counter and collections/meter
+
 ## v0.1.1 (2021/1/18)
 
 Fix bug:
