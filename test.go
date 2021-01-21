@@ -3,10 +3,13 @@
 package main
 
 import (
+	"fmt"
+
 	"github.com/pigeonligh/easygo/collections/counter"
 	"github.com/pigeonligh/easygo/collections/meter"
 	log "github.com/pigeonligh/easygo/elog"
 	"github.com/pigeonligh/easygo/errors"
+	"github.com/pigeonligh/easygo/pretty/list"
 )
 
 func logInit() {
@@ -60,6 +63,23 @@ func testCounter() {
 	log.Info(c.Min(d))
 }
 
+func testList() {
+	l := list.New("Hello world")
+	l.Add("hello 1")
+	l.Get(-1).Add("world 1")
+	l.Get(-1).Get(-1).Add("!!!")
+	l.Get(-1).Add("world 2")
+	l.Get(-1).Get(-1).Add("!!!")
+	l.Add("hello 2")
+	l.Get(-1).Add("world 3")
+	l.Get(-1).Add("world 4")
+
+	fmt.Println(l.ToString(list.CircleRender))
+	fmt.Println(l.ToString(list.HyphenReduceRender))
+	fmt.Println(l.ToString(list.TreeRenderWithoutHeader))
+	fmt.Println(l.ToString(list.NumberRender))
+}
+
 func main() {
 	logInit()
 
@@ -68,4 +88,6 @@ func main() {
 
 	testMeter()
 	testCounter()
+
+	testList()
 }
