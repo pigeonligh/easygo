@@ -1,6 +1,8 @@
 package table
 
 import (
+	"fmt"
+
 	"github.com/pigeonligh/easygo/text"
 )
 
@@ -59,10 +61,7 @@ func (table *Table) AddRow(row Row) {
 		row = row[0:widthSize]
 	}
 	for i := 0; i < widthSize; i++ {
-		t, ok := row[i].(string)
-		if !ok {
-			t = "-"
-		}
+		t := fmt.Sprint(row[i])
 		if table.maxWidth[i] < len(t) {
 			table.maxWidth[i] = len(t)
 		}

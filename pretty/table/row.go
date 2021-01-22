@@ -1,6 +1,7 @@
 package table
 
 import (
+	"fmt"
 	"strings"
 
 	"github.com/pigeonligh/easygo/text"
@@ -22,10 +23,7 @@ func (row Row) Render(width []int, align []text.Alignment) string {
 	ret := "|"
 
 	for i := 0; i < rowSize; i++ {
-		t, ok := row[i].(string)
-		if !ok {
-			t = "-"
-		}
+		t := fmt.Sprint(row[i])
 		if width[i] == 0 {
 			ret += " " + t + " |"
 		} else {

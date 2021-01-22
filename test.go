@@ -89,9 +89,9 @@ func testTable() {
 		{Text: "ask", HeaderAlign: text.AlignCenter, TextAlign: text.AlignLeft},
 		{Text: "answer", HeaderAlign: text.AlignCenter, TextAlign: text.AlignLeft},
 	})
-	t.AddRow(table.Row{"1", "Hello, nice to meet you.", "Nice to meet you, too."})
-	t.AddRow(table.Row{"2", "How are you?", "I'm fine, thank you."})
-	t.AddRow(table.Row{"3", "What day is it today?", fmt.Sprintf("It's %s.", time.Now().Format("Monday"))})
+	t.AddRow(table.Row{1, "Hello, nice to meet you.", "Nice to meet you, too."})
+	t.AddRow(table.Row{2, "How are you?", "I'm fine, thank you."})
+	t.AddRow(table.Row{3, "What day is it today?", fmt.Sprintf("It's %s.", time.Now().Format("Monday"))})
 
 	fmt.Println(t.Render())
 }
