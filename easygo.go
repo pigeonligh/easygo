@@ -1,6 +1,4 @@
-// +build vendor
-
-package main
+package easygo
 
 import (
 	"fmt"
@@ -96,7 +94,7 @@ func testTable() {
 	fmt.Println(t.Render())
 }
 
-func main() {
+func Debugs() {
 	logInit()
 
 	testLog()
