@@ -1,5 +1,9 @@
 # Change Log
 
+## v0.2.2 (2021/1/22)
+
+- Add pretty/text and fix main package
+
 ## v0.2.1 (2021/1/22)
 
 - Add pretty/list and pretty/table
