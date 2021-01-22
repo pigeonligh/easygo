@@ -12,7 +12,7 @@ import (
 	"github.com/pigeonligh/easygo/errors"
 	"github.com/pigeonligh/easygo/pretty/list"
 	"github.com/pigeonligh/easygo/pretty/table"
-	"github.com/pigeonligh/easygo/text"
+	"github.com/pigeonligh/easygo/pretty/text"
 )
 
 func logInit() {

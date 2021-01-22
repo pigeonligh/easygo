@@ -3,7 +3,7 @@ package table
 import (
 	"fmt"
 
-	"github.com/pigeonligh/easygo/text"
+	"github.com/pigeonligh/easygo/pretty/text"
 )
 
 type TableHeader struct {
