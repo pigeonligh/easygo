@@ -96,6 +96,12 @@ func testTable() {
 	fmt.Println(t.Render())
 }
 
+func testText() {
+	color := text.Colors{text.FontBold, text.FgGreen, text.BgBlue}
+
+	fmt.Println(color.Setup("hello world!"))
+}
+
 func main() {
 	logInit()
 
@@ -107,4 +113,5 @@ func main() {
 
 	testList()
 	testTable()
+	testText()
 }
