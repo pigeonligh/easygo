@@ -1,6 +1,4 @@
-// +build vendor
-
-package main
+package easygo
 
 import (
 	"fmt"
@@ -102,7 +100,7 @@ func testText() {
 	fmt.Println(color.Setup("hello world!"))
 }
 
-func main() {
+func Debugs() {
 	logInit()
 
 	testLog()
