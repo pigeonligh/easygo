@@ -4,12 +4,15 @@ package main
 
 import (
 	"fmt"
+	"time"
 
 	"github.com/pigeonligh/easygo/collections/counter"
 	"github.com/pigeonligh/easygo/collections/meter"
 	log "github.com/pigeonligh/easygo/elog"
 	"github.com/pigeonligh/easygo/errors"
 	"github.com/pigeonligh/easygo/pretty/list"
+	"github.com/pigeonligh/easygo/pretty/table"
+	"github.com/pigeonligh/easygo/text"
 )
 
 func logInit() {
@@ -75,9 +78,22 @@ func testList() {
 	l.Get(-1).Add("world 4")
 
 	fmt.Println(l.ToString(list.CircleRender))
-	fmt.Println(l.ToString(list.HyphenReduceRender))
-	fmt.Println(l.ToString(list.TreeRenderWithoutHeader))
-	fmt.Println(l.ToString(list.NumberRender))
+	// fmt.Println(l.ToString(list.HyphenReduceRender))
+	// fmt.Println(l.ToString(list.TreeRenderWithoutHeader))
+	// fmt.Println(l.ToString(list.NumberRender))
+}
+
+func testTable() {
+	t := table.NewByHeaders([]table.TableHeader{
+		{Text: "#", HeaderAlign: text.AlignCenter, TextAlign: text.AlignCenter},
+		{Text: "ask", HeaderAlign: text.AlignCenter, TextAlign: text.AlignLeft},
+		{Text: "answer", HeaderAlign: text.AlignCenter, TextAlign: text.AlignLeft},
+	})
+	t.AddRow(table.Row{"1", "Hello, nice to meet you.", "Nice to meet you, too."})
+	t.AddRow(table.Row{"2", "How are you?", "I'm fine, thank you."})
+	t.AddRow(table.Row{"3", "What day is it today?", fmt.Sprintf("It's %s.", time.Now().Format("Monday"))})
+
+	fmt.Println(t.Render())
 }
 
 func main() {
@@ -90,4 +106,5 @@ func main() {
 	testCounter()
 
 	testList()
+	testTable()
 }
