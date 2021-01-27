@@ -13,3 +13,11 @@ func MakeByInt(values ...int) *Meter {
 	}
 	return m
 }
+
+func MakeByInt64(values ...int64) *Meter {
+	m := New()
+	for _, v := range values {
+		m.Add(float64(v))
+	}
+	return m
+}
