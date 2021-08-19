@@ -23,17 +23,7 @@ func getRefValueOfPointer(
 	return
 }
 
-type ParseFunc func(*pflag.FlagSet, interface{}, map[string]ParseFunc) error
-
-var Recursion = map[string]ParseFunc{
-	"recursion": ObjectVar,
-}
-
-func ObjectVar(
-	fs *pflag.FlagSet,
-	ptr interface{},
-	functions map[string]ParseFunc,
-) error {
+func ObjectVar(fs *pflag.FlagSet, ptr interface{}, prefix string) error {
 	ref, err := getRefValueOfPointer(ptr)
 	if err != nil {
 		return err
@@ -44,20 +34,15 @@ func ObjectVar(
 	for i := 0; i < fieldCount; i++ {
 		fieldType := refType.Field(i)
 		fieldValue := ref.Field(i)
-		name := fieldType.Tag.Get("name")
+		name := prefix + fieldType.Tag.Get("name")
 		help := fieldType.Tag.Get("help")
 		shorthand := fieldType.Tag.Get("shorthand")
-		function := fieldType.Tag.Get("function")
+		if len(prefix) > 0 {
+			shorthand = ""
+		}
+		fieldprefix := prefix + fieldType.Tag.Get("prefix")
 
 		obj := fieldValue.Addr().Interface()
-		if len(function) > 0 && functions != nil {
-			if f, ok := functions[function]; ok {
-				if err := f(fs, obj, functions); err != nil {
-					return err
-				}
-				continue
-			}
-		}
 		switch ptr := obj.(type) {
 		case *bool:
 			fs.BoolVarP(ptr, name, shorthand, *ptr, help)
@@ -111,7 +96,7 @@ func ObjectVar(
 			fs.IPNetVarP(ptr, name, shorthand, *ptr, help)
 
 		default:
-			return fmt.Errorf("unknown flag type of %v", fieldType)
+			return ObjectVar(fs, ptr, fieldprefix)
 		}
 	}
 	return nil
