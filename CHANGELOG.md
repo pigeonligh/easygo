@@ -1,5 +1,10 @@
 # Change Log
 
+## v0.3.0 (2021/8/19)
+
+- Add cli/flags
+- Fix collections
+
 ## v0.2.2 (2021/1/22)
 
 - Add pretty/text and fix main package
