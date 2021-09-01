@@ -1,4 +1,4 @@
-module github.com/pigeonligh/easygo
+module gopkg.pigeonligh.com/easygo
 
 go 1.13
 

@@ -6,7 +6,7 @@
 package main
 
 import (
-    log "github.com/pigeonligh/easygo/elog"
+    log "gopkg.pigeonligh.com/easygo/elog"
 )
 
 func main() {

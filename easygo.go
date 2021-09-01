@@ -4,13 +4,13 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/pigeonligh/easygo/collections/counter"
-	"github.com/pigeonligh/easygo/collections/meter"
-	log "github.com/pigeonligh/easygo/elog"
-	"github.com/pigeonligh/easygo/errors"
-	"github.com/pigeonligh/easygo/pretty/list"
-	"github.com/pigeonligh/easygo/pretty/table"
-	"github.com/pigeonligh/easygo/pretty/text"
+	"gopkg.pigeonligh.com/easygo/collections/counter"
+	"gopkg.pigeonligh.com/easygo/collections/meter"
+	log "gopkg.pigeonligh.com/easygo/elog"
+	"gopkg.pigeonligh.com/easygo/errors"
+	"gopkg.pigeonligh.com/easygo/pretty/list"
+	"gopkg.pigeonligh.com/easygo/pretty/table"
+	"gopkg.pigeonligh.com/easygo/pretty/text"
 )
 
 func logInit() {

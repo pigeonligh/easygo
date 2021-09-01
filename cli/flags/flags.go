@@ -9,6 +9,10 @@ import (
 	"github.com/spf13/pflag"
 )
 
+type FlagOptions struct {
+	Prefix string
+}
+
 func getRefValueOfPointer(
 	ptr interface{},
 ) (refValue reflect.Value, err error) {
@@ -23,10 +27,14 @@ func getRefValueOfPointer(
 	return
 }
 
-func ObjectVar(fs *pflag.FlagSet, ptr interface{}, prefix string) error {
+func ObjectVar(fs *pflag.FlagSet, ptr interface{}, options *FlagOptions) error {
 	ref, err := getRefValueOfPointer(ptr)
 	if err != nil {
 		return err
+	}
+
+	if options == nil {
+		options = &FlagOptions{}
 	}
 
 	refType := ref.Type()
@@ -34,13 +42,15 @@ func ObjectVar(fs *pflag.FlagSet, ptr interface{}, prefix string) error {
 	for i := 0; i < fieldCount; i++ {
 		fieldType := refType.Field(i)
 		fieldValue := ref.Field(i)
-		name := prefix + fieldType.Tag.Get("name")
+		name := options.Prefix + fieldType.Tag.Get("name")
 		help := fieldType.Tag.Get("help")
 		short := fieldType.Tag.Get("short")
-		if len(prefix) > 0 {
+		if len(options.Prefix) > 0 {
 			short = ""
 		}
-		fieldprefix := prefix + fieldType.Tag.Get("prefix")
+		fieldOptions := &FlagOptions{
+			Prefix: options.Prefix + fieldType.Tag.Get("prefix"),
+		}
 
 		obj := fieldValue.Addr().Interface()
 		switch ptr := obj.(type) {
@@ -96,7 +106,7 @@ func ObjectVar(fs *pflag.FlagSet, ptr interface{}, prefix string) error {
 			fs.IPNetVarP(ptr, name, short, *ptr, help)
 
 		default:
-			return ObjectVar(fs, ptr, fieldprefix)
+			return ObjectVar(fs, ptr, fieldOptions)
 		}
 	}
 	return nil

@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"strings"
 
-	"github.com/pigeonligh/easygo/pretty/text"
+	"gopkg.pigeonligh.com/easygo/pretty/text"
 )
 
 type rowType interface {

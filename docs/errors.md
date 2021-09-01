@@ -8,7 +8,7 @@ package main
 import (
 	"fmt"
 
-	"github.com/pigeonligh/easygo/errors"
+	"gopkg.pigeonligh.com/easygo/errors"
 )
 
 func main() {
