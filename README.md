@@ -2,6 +2,12 @@
 
 Easy Go is a tool-kit for golang.
 
+## Usage 
+
+```
+go get gopkg.pigeonligh.com/easygo
+```
+
 ## Tools
 
 |            Tool            |                    Description                    |
